@@ -2,6 +2,7 @@ package com.example.PharmacyRecommendation.pharmacy.service;
 
 import com.example.PharmacyRecommendation.pharmacy.entity.Pharmacy;
 import com.example.PharmacyRecommendation.pharmacy.repository.PharmacyRepository;
+import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,5 +37,10 @@ public class PharmacyRepositoryService {
         }
 
         entity.changePharmacyAddress(address);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Pharmacy> findAll() {
+        return pharmacyRepository.findAll();
     }
 }
