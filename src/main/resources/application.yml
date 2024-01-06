@@ -19,8 +19,6 @@ kakao:
     api:
       key: ${KAKAO_REST_API_KEY}
 
-# ...
-
 ---
 
 spring:
@@ -38,5 +36,5 @@ spring:
       port: 6379
   jpa:
     hibernate:
-      ddl-auto:
+      ddl-auto: validate
     show-sql: true
