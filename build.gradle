@@ -46,6 +46,15 @@ dependencies {
 	// testcontainers
 	testImplementation "org.testcontainers:spock"
 	testImplementation "org.testcontainers:mariadb"
+
+	// https://mvnrepository.com/artifact/org.springframework.retry/spring-retry
+	implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.5'
+
+	// https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+	testImplementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '5.0.0-alpha.12'
+	// https://mvnrepository.com/artifact/com.squareup.okhttp3/mockwebserver
+	testImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '5.0.0-alpha.12'
+
 }
 
 tasks.named('test') {
