@@ -1,6 +1,7 @@
 package com.example.PharmacyRecommendation.direction.service
 
 import com.example.PharmacyRecommendation.api.dto.DocumentDto
+import com.example.PharmacyRecommendation.direction.repository.DirectionRepository
 import com.example.PharmacyRecommendation.pharmacy.dto.PharmacyDto
 import com.example.PharmacyRecommendation.pharmacy.service.PharmacySearchService
 import spock.lang.Specification
@@ -8,8 +9,9 @@ import spock.lang.Specification
 class DirectionServiceTest extends Specification {
 
     private PharmacySearchService pharmacySearchService = Mock()
+    private DirectionRepository directionRepository = Mock()
 
-    private DirectionService directionService = new DirectionService(pharmacySearchService)
+    private DirectionService directionService = new DirectionService(pharmacySearchService, directionRepository)
 
     private List<PharmacyDto> pharmacyList
 
