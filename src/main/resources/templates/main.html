@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pharmacy Recommendation System</title>
+
+    <!-- Add bootstrap css -->
+    <link rel="stylesheet" th:href="@{/css/lib/bootstrap.min.css}">
+</head>
+<body>
+<div>
+    <div class="container">
+        <div>
+            <h2>Pharmacy Recommendation</h2>
+        </div>
+        <div class="body">
+            <form action="/search" method="post">
+                <div>
+                    <label for="address">If you enter your address, we will recommend up to 3 nearby pharmacies based on your address.</label>
+                    <input type="text" class="form-control" id="address_kakao" name="address"
+                           placeholder="Enter the address (street number or road name). ex) Jongam-ro 10-gil, Seongbuk-gu, Seoul" th:readonly="readonly">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary" id="btn-save">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Kakao 우편번호 서비스 -->
+<!-- https://postcode.map.daum.net/guide -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    window.onload = function() {
+        document.getElementById("address_kakao").addEventListener("click", function(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    document.getElementById("address_kakao").value = data.address;
+                }
+            }).open();
+        });
+    }
+</script>
+
+<!-- Add bootstrap js, jquery -->
+<script th:src="@{/js/lib/jquery.min.js}"></script>
+<script th:src="@{/js/lib/bootstrap.min.js}"></script>
+
+</body>
+</html>
