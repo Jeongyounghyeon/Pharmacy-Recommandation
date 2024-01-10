@@ -1,5 +1,6 @@
 package com.example.PharmacyRecommendation.pharmacy.service;
 
+import com.example.PharmacyRecommendation.pharmacy.cache.PharmacyRedisTemplateService;
 import com.example.PharmacyRecommendation.pharmacy.dto.PharmacyDto;
 import com.example.PharmacyRecommendation.pharmacy.entity.Pharmacy;
 import java.util.List;
@@ -14,13 +15,17 @@ import org.springframework.stereotype.Service;
 public class PharmacySearchService {
 
     private final PharmacyRepositoryService pharmacyRepositoryService;
+    private final PharmacyRedisTemplateService pharmacyRedisTemplateService;
 
     public List<PharmacyDto> searchPharmacyDtoList() {
 
         // redis
+        List<PharmacyDto> pharmacyDtoList = pharmacyRedisTemplateService.findAll();
+        if (!pharmacyDtoList.isEmpty()) {
+            return pharmacyDtoList;
+        }
 
         // db
-
         return pharmacyRepositoryService.findAll()
                 .stream()
                 .map(this::convertToPharmacyDto)
